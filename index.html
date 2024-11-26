@@ -10,7 +10,21 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!--monetag bot zone id-->
-    <script src="https://niphaumeenses.net/vignette.min.js" data-zone="8564034" data-sdk="show_8564034"></script>
+    <script>
+        // insert here dynamic script ads
+        const monetagScripts = [
+            { zone: "8564034", sdk: "show_8564034" },
+        ];
+        // random sscript every load
+        const randomScript = monetagScripts[Math.floor(Math.random() * monetagScripts.length)];
+        // dynamic added scrript to head
+        const scriptElement = document.createElement("script");
+        scriptElement.src = "https://niphaumeenses.net/vignette.min.js";
+        scriptElement.setAttribute("data-zone", randomScript.zone);
+        scriptElement.setAttribute("data-sdk", randomScript.sdk);
+        document.head.appendChild(scriptElement);
+    </script>
+    <!-- below here script dynamicly generated ! -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -283,9 +297,19 @@
 
         // Reward ad function
         function showRewardedAd() {
-            if (typeof show_8564034 === 'function') {
-                show_8564034().then(() => {
-                    // Increase points and balance on ad completion
+            // search script data-zone and data-sdk
+            const scriptTag = document.querySelector('script[data-zone][data-sdk]');
+            if (!scriptTag) {
+                toastMessage('Rewarded ad script not found!');
+                return;
+            }
+            // take sdk function from data-sdk
+            const sdkFunctionName = scriptTag.getAttribute('data-sdk');
+            // globaly base on name function get
+            const rewardFunction = window[sdkFunctionName]; 
+            
+            if (typeof rewardFunction === 'function') {
+                rewardFunction().then(() => {
                     points += 10;
                     balance += 0.008;
                     localStorage.setItem('userPoints', points);
@@ -297,10 +321,12 @@
                     console.error("Error occurred while showing ad:", error);
                     toastMessage('Failed to load the rewarded ad. Try to turn off adblock!');
                 });
-            } else {
+            } 
+            else {
                 toastMessage('Rewarded ad not available.');
             }
         }
+
         function updateBalance() {
             document.getElementById('userPoints').textContent = points;
             document.getElementById('userBalance').textContent = balance.toFixed(2);
