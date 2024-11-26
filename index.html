@@ -141,7 +141,7 @@
         .bottom-nav a {
             text-align: center;
             color: #ffd700;
-            font-size: 1.2em;
+            font-size: 15px;
             text-decoration: none;
             flex: 1;
             transition: color 0.3s;
@@ -149,6 +149,12 @@
 
         .bottom-nav a:hover {
             color: #fff700;
+        }
+
+        .bottom-nav a:active,
+        .bottom-nav a:focus {
+            color: inherit; /* Mencegah perubahan warna saat ditekan */
+            outline: none; /* Menghapus garis outline */
         }
 
         .bottom-nav i {
@@ -344,46 +350,47 @@
         }
 
 
+
         document.addEventListener("contextmenu", function (e) {
             e.preventDefault();
-            toastMessage("Right-click isn't allowed!");
+            // toastMessage("Right-click isn't allowed!");
         });
 
         document.addEventListener("keydown", function (e) {
             // Blok F12
             if (e.key === "F12") {
                 e.preventDefault();
-                toastMessage("Developer Tools isn't allowed!");
+                // toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + I (Chrome/Edge Inspector shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "I") {
                 e.preventDefault();
-                toastMessage("Developer Tools isn't allowed!");
+                // toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + J (Chrome/Edge Console shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "J") {
                 e.preventDefault();
-                toastMessage("Developer Tools isn't allowed!");
+                // toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + C (Chrome/Edge/Firefox Inspector shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "C") {
                 e.preventDefault();
-                toastMessage("Developer Tools isn't allowed!");
+                // toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + U (View Page Source shortcut)
             if (e.ctrlKey && e.key === "U") {
                 e.preventDefault();
-                toastMessage("Viewing page source isn't allowed!");
+                // toastMessage("Viewing page source isn't allowed!");
             }
 
             // Blok Ctrl + Shift + K (Firefox Console shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "K") {
                 e.preventDefault();
-                toastMessage("Developer Tools isn't allowed!");
+                // toastMessage("Developer Tools isn't allowed!");
             }
         });
 
