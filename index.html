@@ -267,8 +267,8 @@
 
 
         function saveUserInfo() {
-            const name = document.getElementById('inputName').value;
-            const number = document.getElementById('inputNumber').value;
+            const name = document.getElementById('inputName').value.trim();
+            const number = document.getElementById('inputNumber').value.trim();
             if (name && number) {
                 localStorage.setItem('userName', name);
                 localStorage.setItem('userNumber', number);
@@ -294,10 +294,10 @@
                     document.getElementById('userBalance').textContent = balance.toFixed(2);
                     toastMessage('You have completed the Reward Task and earned 10 points!');
                 }).catch(error => {
+                    console.error("Error occurred while showing ad:", error);
+                    toastMessage('Failed to load the rewarded ad.');
                 });
             } else {
-                toastMessage('Failed to show rewarded ad.');
-                console.error('Ad error:', error);
                 toastMessage('Rewarded ad not available.');
             }
         }
