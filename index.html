@@ -328,8 +328,15 @@
         }
 
         function updateBalance() {
-            document.getElementById('userPoints').textContent = points;
-            document.getElementById('userBalance').textContent = balance.toFixed(2);
+            const maxPoints = 99999;
+            const maxBalance = 9999.99;
+
+            const displayedPoints = points > maxPoints ? "99999+" : points;
+            const displayedBalance = balance > maxBalance ? "9999.99+" : `${balance.toFixed(2)}`;
+
+            document.getElementById('userPoints').textContent = displayedPoints;
+            document.getElementById('userBalance').textContent = displayedBalance;
+
             localStorage.setItem('userPoints', points);
             localStorage.setItem('userBalance', balance.toFixed(2));
         }
