@@ -295,7 +295,7 @@
                     toastMessage('You have completed the Reward Task and earned 10 points!');
                 }).catch(error => {
                     console.error("Error occurred while showing ad:", error);
-                    toastMessage('Failed to load the rewarded ad.');
+                    toastMessage('Failed to load the rewarded ad. Try to turn off adblock!');
                 });
             } else {
                 toastMessage('Rewarded ad not available.');
