@@ -78,7 +78,7 @@
             width: 90%;
             max-width: 400px;
             color: #ffd700;
-            margin: 250px auto 20px;
+            margin: 150px auto 20px;
             box-sizing: border-box;
         }
 
@@ -302,8 +302,7 @@
             }
         }
         function updateBalance() {
-            document.getElementById('userPoints').textContent
-            points;
+            document.getElementById('userPoints').textContent = points;
             document.getElementById('userBalance').textContent = balance.toFixed(2);
             localStorage.setItem('userPoints', points);
             localStorage.setItem('userBalance', balance.toFixed(2));
