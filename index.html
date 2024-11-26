@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" sizes="100x100" href="https://cdn-icons-png.flaticon.com/128/2460/2460475.png">
     <title>Monetag | Task reward</title>
+    <!-- toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!--monetag bot zone id-->
     <!-- <script src="//niphaumeenses.net/vignette.min.js" data-zone="8486638" data-sdk="show_8486638"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -236,7 +239,7 @@
         <div class="modal-content">
             <h3>What's your name and number?</h3>
             <input type="text" id="inputName" placeholder="Enter your name"> 
-            <input type="text" id="inputNumber"placeholder="Enter your number"> 
+            <input type="number" id="inputNumber"placeholder="Enter your number"> 
             <button onclick="saveUserInfo()">Save</button>
         </div>
     </div>
@@ -273,7 +276,7 @@
                 document.getElementById('userNumber').textContent = number;
                 document.getElementById('userModal').classList.remove('active');
             } else {
-                alert("Please enter both your name and number.");
+                toastMessage("Please enter both your name and number.");
             }
         }
 
@@ -289,13 +292,13 @@
                     localStorage.setItem('userBalance', balance.toFixed(2));
                     document.getElementById('userPoints').textContent = points;
                     document.getElementById('userBalance').textContent = balance.toFixed(2);
-                    alert('You have completed the Reward Task and earned 10 points!');
+                    toastMessage('You have completed the Reward Task and earned 10 points!');
                 }).catch(error => {
                 });
             } else {
-                alert('Failed to show rewarded ad.'); 
+                toastMessage('Failed to show rewarded ad.');
                 console.error('Ad error:', error);
-                alert('Rewarded ad not available.');
+                toastMessage('Rewarded ad not available.');
             }
         }
         function updateBalance() {
@@ -309,53 +312,65 @@
 
         document.addEventListener("contextmenu", function (e) {
             e.preventDefault();
-            alert("Right-click isn't allowed!");
+            toastMessage("Right-click isn't allowed!");
         });
 
         document.addEventListener("keydown", function (e) {
             // Blok F12
             if (e.key === "F12") {
                 e.preventDefault();
-                // alert("Developer Tools isn't allowed!");
+                toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + I (Chrome/Edge Inspector shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "I") {
                 e.preventDefault();
-                // alert("Developer Tools isn't allowed!");
+                toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + J (Chrome/Edge Console shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "J") {
                 e.preventDefault();
-                // alert("Developer Tools isn't allowed!");
+                toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + Shift + C (Chrome/Edge/Firefox Inspector shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "C") {
                 e.preventDefault();
-                // alert("Developer Tools isn't allowed!");
+                toastMessage("Developer Tools isn't allowed!");
             }
 
             // Blok Ctrl + U (View Page Source shortcut)
             if (e.ctrlKey && e.key === "U") {
                 e.preventDefault();
-                // alert("Viewing page source isn't allowed!");
+                toastMessage("Viewing page source isn't allowed!");
             }
 
             // Blok Ctrl + Shift + K (Firefox Console shortcut)
             if (e.ctrlKey && e.shiftKey && e.key === "K") {
                 e.preventDefault();
-                // alert("Developer Tools isn't allowed!");
+                toastMessage("Developer Tools isn't allowed!");
             }
         });
 
+        function toastMessage(message) {
+            Toastify({
+            text: message+" ",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", 
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #ff9800, #d6c31a)",
 
+            },
+            onClick: function(){} // Callback after click
+            }).showToast();
+        }
+        
     </script>
 </body>
 
 </html>
-
-
-
-<!--  -->
